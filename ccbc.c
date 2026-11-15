@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h> // needed for powers
 #include <stdbool.h>
-
+// no ai was used for this. This prob isn't the most professional. Idc.
 
 bool entrLoop = 1; // Loop used for entering in a function
 int pwr = 7; // Used the power so we can count downwatrds 
@@ -40,6 +40,8 @@ int binaryConverter(void) {
 
 int main(void) {  
 
+printf("Your Binary Value (between 0 & 255): ");
+
     while (entrLoop == 1) {
         scanf("%d", &decimal);
         if (decimal <= 255 && decimal >= 0) { // both conditions msut be met. Theres prob something I could do to have it be a whole number but this
@@ -50,8 +52,12 @@ int main(void) {
     }
 
     binaryConverter();
-
+    printf("Your Decimal Value is: ");
+    printf("%d",decimal);
+    printf("/n");
+    printf("Your binary value is: " );
     printf("%d%d%d%d%d%d%d%d", pwr7,pwr6,pwr5,pwr4,pwr3,pwr2,pwr1,pwr0);
 
-    return 0; // shuts The program down when done
+    getchar(); // Waits for the user to press Enter
+    return 0;
 }
