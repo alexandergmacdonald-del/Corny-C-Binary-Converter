@@ -58,6 +58,7 @@ printf("Your Binary Value (between 0 & 255): ");
     printf("Your binary value is: " );
     printf("%d%d%d%d%d%d%d%d", pwr7,pwr6,pwr5,pwr4,pwr3,pwr2,pwr1,pwr0);
 
-    getchar(); // Waits for the user to press Enter
+    getchar(); // Waits for the user to press a key like enter
+    getchar(); // For some reason we have to do this twice. idk why and frankly I'm too tired rn to care.
     return 0;
 }
