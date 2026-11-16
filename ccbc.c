@@ -1,22 +1,28 @@
-#include <stdio.h>
-#include <math.h> // needed for powers
-#include <stdbool.h>
-// no ai was used for this. This prob isn't the most professional. Idc.
+// ===== WELCOME TO CCBC =====
+// > This is a simple application I made for fun as in ECE 101 (At the University of Maine) we are learning about binary numbers & decimals
+// > This is a simple application I cleaned up and ported from python so I could do my homework easier despite needing to show work. OOPS!
+// > The code is under the MIT license so anybody can freely use it. I hope you learn from it as much as I learned when I made it
+// > No ai generated code is in this!
 
-bool entrLoop = 1; // Loop used for entering in a function
-int pwr = 7; // Used the power so we can count downwatrds 
-bool pwr7 = 0, pwr6 = 0, pwr5 = 0, pwr4 = 0, pwr3 = 0, pwr2 = 0, pwr1 = 0, pwr0 = 0; // Alright so instead of doing clever code we just set these from 0s to 1s and print them together. Idk how to do it better.
-// Bools can be true or false. Prob more optimized. idc. I won't ask ai. I MADE THIS 
-int decimal; // User inputed value
+#include <stdio.h> // Primary header file
+#include <math.h> // Math header required for powers
+#include <stdbool.h> // Provides defenitions for bools
+
+
+int pwr = 7; // Used the power value so we can count downwards 
+bool pwr7 = 0, pwr6 = 0, pwr5 = 0, pwr4 = 0, pwr3 = 0, pwr2 = 0, pwr1 = 0, pwr0 = 0; // Bool values used for the individual numbers of the final Binary value. By default they are 0;
+// Bools are used as they are either true or false, 1 or 0 
+int decimal; // User intiger input
 
 
 int binaryConverter(void) {
-    while (pwr >= 0) // Hey we gotta make sure its not negative
+    while (pwr >= 0) // Verification that the calculations do not lead us to a number less than, or equal, to 0
     {
-        decimal-=pow(2,pwr);
-        if (decimal<0) {
+        decimal-=pow(2,pwr); // Subtracts from the decimal value by the new pwr value
+        if (decimal<0) { // Check to make sure we haven't reached a number below 0 and a fix if we do
             decimal+=pow(2,pwr);
-        } else if (pwr == 7) {
+
+        } else if (pwr == 7) { // This is used repeatedly but what it does is set the pwr to 1 to show it works
             pwr7 = 1;
         } else if (pwr == 6) {
             pwr6 = 1;
@@ -33,32 +39,34 @@ int binaryConverter(void) {
         } else if (pwr == 0) {
             pwr0 = 1;
         }
-        pwr -= 1;
+        pwr -= 1; // Subtracts from the exponet so we can go to the next one
     }
 }
 
-
+// Main function
 int main(void) {  
 
-printf("Your Binary Value (between 0 & 255): ");
+printf("Your Binary Value (between 0 & 255): "); // we don't have a /n so we can type on the same line!
 
-    while (entrLoop == 1) {
+    while (1) { // Simple while true
         scanf("%d", &decimal);
-        if (decimal <= 255 && decimal >= 0) { // both conditions msut be met. Theres prob something I could do to have it be a whole number but this
-            entrLoop = 0;
+        if (decimal <= 255 && decimal >= 0) { // Check for the conditions that its between 255 & 0. I am unsure how to check if it is an intiger though.
+            break; // Ends the function
         } else {
-            printf("MORON\n");
+            printf("Invalid #!\n"); // Goes to next line to start loop again after telling user that its invalid
         }
     }
 
-    binaryConverter();
+    binaryConverter(); // Runs the function we wrote earlier
+
     printf("Your Decimal Value is: ");
-    printf("%d",decimal);
+    printf("%d",decimal); // the %d is required for the sake of displaying number values rather than text
     printf("/n");
     printf("Your binary value is: " );
-    printf("%d%d%d%d%d%d%d%d", pwr7,pwr6,pwr5,pwr4,pwr3,pwr2,pwr1,pwr0);
+    printf("%d%d%d%d%d%d%d%d", pwr7,pwr6,pwr5,pwr4,pwr3,pwr2,pwr1,pwr0); // there is likely a cleaner solution for this
 
-    getchar(); // Waits for the user to press a key like enter
-    getchar(); // For some reason we have to do this twice. idk why and frankly I'm too tired rn to care.
-    return 0;
+    getchar(); // Consumes the previous input, in this case the decimal, so we can start again
+    getchar(); // Waits for user input so to exit the application
+
+    return 0; // exits the application, once previous condition is met
 }
